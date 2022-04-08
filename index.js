@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const keys = require("./config/keys");
 
-mongoose.connect(
-  `mongodb+srv://postup:${keys.mongoPassword}@post-up.qjou4.mongodb.net/${keys.mongoDatabase}?retryWrites=true&w=majority`,
-);
+mongoose.connect(keys.mongoUri);
 
 const app = express();
 
