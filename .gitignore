@@ -1,0 +1,4 @@
+node_modules
+migration.sql
+.env
+dev.js
