@@ -4,11 +4,6 @@ const keys = require("./config/keys");
 
 mongoose.connect(
   `mongodb+srv://postup:${keys.mongoPassword}@post-up.qjou4.mongodb.net/${keys.mongoDatabase}?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  }
 );
 
 const app = express();
