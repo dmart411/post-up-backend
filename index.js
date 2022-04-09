@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
 const express = require("express");
 const keys = require("./config/keys");
 const User = require("./models/user");
@@ -8,15 +9,11 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
+passport.use(new LocalStrategy(User.authenticate()));
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(null, user);
-  });
-});
+passport.serializeUser(User.serializeUser());
+
+passport.deserializeUser(User.deserializeUser());
 
 // middleware
 app.use(passport.initialize());
